@@ -122,3 +122,84 @@ SELECT
     COUNT(inventory_level) AS overstock_count
 FROM supply_chain
 WHERE inventory_level > 900;
+-- =====================================================
+-- EXPLORATORY ANALYSIS
+-- Additional questions developed from the initial findings
+-- =====================================================
+
+
+-- =====================================================
+-- E1: Which products account for the most overstock
+-- occurrences?
+-- =====================================================
+
+SELECT 
+    product_name,
+    COUNT(inventory_level) AS overstock_occurrences
+FROM supply_chain
+WHERE inventory_level > 900
+GROUP BY product_name
+ORDER BY overstock_occurrences DESC;
+
+
+-- =====================================================
+-- E2: Which warehouse processes the highest total
+-- order volume?
+-- =====================================================
+
+SELECT 
+    warehouse_id,
+    SUM(order_quantity) AS total_order_quantity
+FROM supply_chain
+GROUP BY warehouse_id
+ORDER BY total_order_quantity DESC;
+
+
+-- =====================================================
+-- E3: Do larger orders take longer to deliver than
+-- smaller orders?
+--
+-- Large Order: > 200 units
+-- Small Order: <= 200 units
+-- =====================================================
+
+SELECT
+    CASE
+        WHEN order_quantity > 200 THEN 'Large Order'
+        ELSE 'Small Order'
+    END AS order_size,
+    ROUND(AVG(delivery_time_days), 2) AS avg_delivery_time
+FROM supply_chain
+GROUP BY order_size;
+
+
+-- =====================================================
+-- E4: How does average delivery time for large and
+-- small orders differ by warehouse?
+-- =====================================================
+
+SELECT
+    warehouse_id,
+    CASE
+        WHEN order_quantity > 200 THEN 'Large Order'
+        ELSE 'Small Order'
+    END AS order_size,
+    ROUND(AVG(delivery_time_days), 2) AS avg_delivery_time
+FROM supply_chain
+GROUP BY warehouse_id, order_size
+ORDER BY warehouse_id, order_size;
+
+
+-- =====================================================
+-- E5: How does inventory compare with order activity
+-- for each product?
+-- =====================================================
+
+SELECT
+    product_name AS product,
+    SUM(inventory_level) AS total_inventory,
+    COUNT(order_id) AS number_of_orders,
+    SUM(order_quantity) AS total_units_ordered,
+    ROUND(AVG(order_quantity), 2) AS avg_order_quantity
+FROM supply_chain
+GROUP BY product_name;
