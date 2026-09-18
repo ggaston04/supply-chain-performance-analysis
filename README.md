@@ -315,6 +315,7 @@ The dataset does not include several variables that could explain the observed p
 
 These limitations prevent the analysis from establishing the causes of the observed inventory and delivery patterns.
 
+**Data Modeling Limitation:** The simulated dataset records `inventory_level` within each order record. In a real-world supply chain database, inventory levels would typically be tracked separately or captured as timestamped inventory snapshots. Therefore, summing inventory levels in this project is used to satisfy the scope of the analysis but may not represent how current inventory would be calculated in a production environment.
 ---
 
 # Future Analysis
