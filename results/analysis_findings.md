@@ -370,15 +370,17 @@ Because these variables are unavailable, the analysis identifies areas for furth
 
 # Next Steps
 
-The next phase of the project will expand beyond the original analysis questions and conduct exploratory SQL analysis based on patterns identified in the initial results.
+The exploratory phase identified additional patterns related to inventory, order volume, and delivery performance. Future analysis could expand the dataset and incorporate additional variables to better understand the factors contributing to these patterns.
 
-Potential areas for further analysis include:
+Potential areas for future analysis include:
 
-- Identifying which products account for the most overstock situations
-- Comparing total order volume across all warehouses
-- Comparing delivery times for orders above and below 200 units
-- Investigating the relationship between inventory levels and order activity
-- Comparing overstock occurrences across warehouses
-- Evaluating whether larger orders are associated with longer delivery times
+- Analyzing historical product demand and sales trends
+- Comparing inventory levels with reorder points and safety-stock requirements
+- Evaluating warehouse capacity and utilization
+- Analyzing delivery performance by customer location and shipping distance
+- Comparing promised delivery times with actual delivery times
+- Evaluating product revenue and profitability
+- Investigating seasonal changes in product demand
+- Analyzing supplier lead times and their impact on inventory levels
 
-These analyses will be used to develop more informed business recommendations.
+A larger historical dataset would also allow for more robust analysis of the relationships between inventory, order size, warehouse activity, and delivery performance.
